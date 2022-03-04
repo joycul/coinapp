@@ -9,7 +9,7 @@ function Router() {
         <Route path="/coinapp/:coinId">
           <Coin />
         </Route>
-        <Route path="/">
+        <Route path="/coinapp">
           <Coins />
         </Route>
       </Switch>
