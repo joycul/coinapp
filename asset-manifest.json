@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/coinapp/static/js/main.1d4deea9.js",
+    "main.js": "/coinapp/static/js/main.282ee086.js",
     "index.html": "/coinapp/index.html",
-    "main.1d4deea9.js.map": "/coinapp/static/js/main.1d4deea9.js.map"
+    "main.282ee086.js.map": "/coinapp/static/js/main.282ee086.js.map"
   },
   "entrypoints": [
-    "static/js/main.1d4deea9.js"
+    "static/js/main.282ee086.js"
   ]
 }
