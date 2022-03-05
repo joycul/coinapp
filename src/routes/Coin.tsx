@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   Switch,
   Route,
@@ -12,6 +11,7 @@ import Chart from "./Chart";
 import Price from "./Price";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
+import { Helmet } from "react-helmet-async";
 
 interface RouteParams {
   coinId: string;
@@ -79,7 +79,7 @@ interface PriceData {
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.accentColor};
   padding: 10px 20px;
   border-radius: 10px;
 `;
@@ -109,7 +109,8 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  color: ${(props) => props. theme.accentColor};
+  font-size: 48px;
+  color: ${(props) => props.theme.accentColor};
 `;
 
 const Loader = styled.span`
@@ -119,8 +120,10 @@ const Loader = styled.span`
 
 const Header = styled.header`
   height: 15vh;
+  display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 const Tabs = styled.div`
@@ -135,16 +138,20 @@ const Tab = styled.span<{ isActive: boolean }>`
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 400;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.accentColor};
   padding: 7px 0px;
   border-radius: 10px;
   color: ${(props) =>
-    props.isActive ? props.theme.accentColor : props.theme.textColor};
+    props.isActive ? `gold` : props.theme.textColor};
   a {
     display: block;
   }
 `;
 
+const Btn = styled.button`
+  position: absolute;
+  left: 400px;
+`
 
 
 
@@ -184,7 +191,16 @@ function Coin() {
 
   return (
     <Container>
+      <Helmet>
+        <title>
+          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+        </title>
+      </Helmet>
       <Header>
+        <Btn>
+          
+          <Link to={`/coinapp/`}>back</Link>
+        </Btn>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
@@ -199,12 +215,12 @@ function Coin() {
               <span>{infoData?.rank}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Open Source:</span>
+              <span>Symbol:</span>
               <span>${infoData?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Open Source:</span>
-              <span>{infoData?.open_source ? "Yes" : "No"}</span>
+              <span>Price:</span>
+              <span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
             </OverviewItem>
           </Overview>
           <Description>{infoData?.description}</Description>
@@ -233,7 +249,7 @@ function Coin() {
               <Price></Price>
             </Route>
             <Route path={`/coinapp/:coinId/chart`}>
-              <Chart />
+              <Chart coinId={coinId} />
             </Route>
           </Switch>
         </>

@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { HelmetProvider } from "react-helmet-async";
+import { ThemeProvider } from "styled-components";
+import { theme, lightTheme, darkTheme } from "./theme";
+import React, { useState } from "react";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -36,6 +40,7 @@ footer, header, hgroup, main, menu, nav, section {
 }
 body {
   line-height: 1;
+  width: 480px;
 }
 menu, ol, ul {
   list-style: none;
@@ -64,14 +69,31 @@ a {
   text-decoration:none;
   color: inherit;
 }
+
+button {
+
+  
+}
 `;
 
+
+
+
 function App() {
+
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDark = () => setDarkMode((current) => !current);
+
   return (
     <>
-      <GlobalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+        <button onClick={toggleDark}>Theme Mode</button>
+        <GlobalStyle />
+          <HelmetProvider>
+            <Router />
+          </HelmetProvider>
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 }
