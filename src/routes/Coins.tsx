@@ -58,6 +58,12 @@ const Loader = styled.span`
   display: block;
 `
 
+const Btn = styled.button`
+  position: absolute;
+  left: 330px;
+  top: 10px;
+`
+
 interface ICoin {
   id: string;
   name: string;
@@ -68,8 +74,12 @@ interface ICoin {
   type: string;
 }
 
+interface ICoinsProps {
+  toggleDark: () => void;
+}
 
-function Coins() {
+
+function Coins({ toggleDark }: ICoinsProps) {
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
   // const [coins, setCoins] = useState<CoinInterface[]>([]);
   // const [loading, setLoading] = useState(true);
@@ -91,7 +101,8 @@ function Coins() {
         <title>코인</title>
       </Helmet>
       <Header>
-        <Title>코인</Title>        
+        <Title>코인</Title>
+        <Btn onClick={toggleDark}>Toggle Dark Mode</Btn>        
       </Header>
       {isLoading ? (
       <Loader>로딩 중...</Loader>

@@ -1,6 +1,7 @@
 import { fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
 interface RouteParams {
   coinId: string;
@@ -40,7 +41,14 @@ interface PriceData {
   };
 }
 
-
+const Box = styled.div`
+  width: 440px;
+  height: 250px;
+  border-radius: 50px;
+  background-color: beige;
+  padding: 30px;
+  margin: 0 auto;
+`
 
 
 
@@ -53,9 +61,10 @@ function Price() {
 
    return (
      <>
-    <h1>USD price: ${tickersData?.quotes.USD.price.toFixed(3)}</h1>
-    <h1>최근 1년 변동률: {tickersData?.quotes.USD.percent_change_1y} %</h1>
-
+    <Box>
+      <h1>USD price: ${tickersData?.quotes.USD.price.toFixed(3)}</h1>
+      <h1>최근 1년 변동률: {tickersData?.quotes.USD.percent_change_1y} %</h1>
+    </Box>
 
     </>
    )}

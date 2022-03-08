@@ -150,12 +150,19 @@ const Tab = styled.span<{ isActive: boolean }>`
 
 const Btn = styled.button`
   position: absolute;
-  left: 400px;
+  left: 20px;
+  top: 10px;
 `
 
 
+interface ICoinProps {
+  darkMode: boolean;
+}
 
-function Coin() {
+
+
+
+function Coin({ darkMode }: ICoinProps) {
   // const [loading, setLoading] = useState(true);
   const { coinId } = useParams<RouteParams>();
   const { state } = useLocation<RouteState>();
@@ -197,8 +204,7 @@ function Coin() {
         </title>
       </Helmet>
       <Header>
-        <Btn>
-          
+        <Btn>          
           <Link to={`/coinapp/`}>back</Link>
         </Btn>
         <Title>
@@ -249,7 +255,7 @@ function Coin() {
               <Price></Price>
             </Route>
             <Route path={`/coinapp/:coinId/chart`}>
-              <Chart coinId={coinId} />
+            <Chart darkMode={darkMode} coinId={coinId} />
             </Route>
           </Switch>
         </>
