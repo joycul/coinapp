@@ -155,14 +155,12 @@ const Btn = styled.button`
 `
 
 
-interface ICoinProps {
-  darkMode: boolean;
-}
+interface ICoinProps {}
 
 
 
 
-function Coin({ darkMode }: ICoinProps) {
+function Coin({}: ICoinProps) {
   // const [loading, setLoading] = useState(true);
   const { coinId } = useParams<RouteParams>();
   const { state } = useLocation<RouteState>();
@@ -255,7 +253,7 @@ function Coin({ darkMode }: ICoinProps) {
               <Price></Price>
             </Route>
             <Route path={`/coinapp/:coinId/chart`}>
-            <Chart darkMode={darkMode} coinId={coinId} />
+            <Chart coinId={coinId} />
             </Route>
           </Switch>
         </>
