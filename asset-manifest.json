@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/todolist/static/js/main.2248b477.js",
-    "index.html": "/todolist/index.html",
-    "main.2248b477.js.map": "/todolist/static/js/main.2248b477.js.map"
+    "main.js": "/coinapp/static/js/main.4182ea34.js",
+    "index.html": "/coinapp/index.html",
+    "main.4182ea34.js.map": "/coinapp/static/js/main.4182ea34.js.map"
   },
   "entrypoints": [
-    "static/js/main.2248b477.js"
+    "static/js/main.4182ea34.js"
   ]
 }
